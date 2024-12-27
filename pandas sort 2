@@ -1,0 +1,9 @@
+import pandas as pd
+data=pd.read_csv('data.csv')
+slov={}
+for i in data['email']:
+    slov[(i[i.index('@')+1:])]=slov.get((i[i.index('@')+1:]),0)+1
+new=pd.DataFrame(list(slov.items()),columns=['domain','count'])
+new2=new.sort_values(['count','domain'],ascending=[True,True])
+new2.to_csv ('domain_usage.csv', index=False)
+
