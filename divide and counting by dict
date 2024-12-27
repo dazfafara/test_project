@@ -1,0 +1,12 @@
+r={}
+
+for i in range(int(input())):
+    sl=input().split()
+    a,b,c=sl[0],sl[1],int(sl[2])
+    r.setdefault(a,{})
+    r[a][b]=r[a].get(b,0)+int(c)
+
+for k,v in sorted(r.items()):
+    print(k+':')
+    for k1,v1 in sorted(r[k].items()):
+        print(k1,v1)
