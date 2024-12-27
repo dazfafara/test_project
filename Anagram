@@ -1,0 +1,11 @@
+r={}
+r1={}
+for i in input().lower().split():
+        i = i.strip('.,!?:;-').replace(' ', '')
+        for j in i:
+                r[j]=r.get(j,0)+1
+for i in input().lower().split():
+        i = i.strip('.,!?:;-').replace(' ', '')
+        for j in i:
+                r1[j] = r1.get(j, 0) + 1
+print('YES' if r==r1 else 'NO')
