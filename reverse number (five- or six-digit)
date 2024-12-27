@@ -1,0 +1,11 @@
+number = list(str(int(input())))
+if len(number)==5 and number[2]=='0':
+    for i in number:
+        number.remove('0')
+    print(*number[::-1],sep='')
+if len(number)==5:
+    print(*number[::-1], sep='')
+if len(number)==6:
+    print(*number[0],*number[:0:-1], sep='')
+
+
