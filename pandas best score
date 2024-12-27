@@ -1,0 +1,10 @@
+import pandas as pd
+import json
+
+data=pd.read_csv('exam_results.csv',encoding='utf-8')
+data=data.rename(columns={'score':'best_score'})
+df=data.sort_values(['email','date_and_time'],ascending=[True,True])
+b=df.drop_duplicates(subset=['email'], keep='last')
+final=b.to_dict('records')
+with open('best_scores.json', 'w',encoding='utf-8') as file:
+    json.dump(final, file)
