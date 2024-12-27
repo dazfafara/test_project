@@ -1,0 +1,8 @@
+from functools import reduce
+import pandas as pd
+data=pd.read_csv('deniro.csv', encoding='utf-8',names=['1','2','3'])
+a=input()
+aga=data.sort_values([a,a],ascending=[True,False])
+new=aga.values.tolist()
+for i in range(len(new)):
+    print(reduce(lambda x, y: x +','+str(y) , new[i]))
