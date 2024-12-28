@@ -1,0 +1,9 @@
+def takes_positive(func):
+    def wrapper(*args,**kwargs):
+            if all(type(i)==int and i>0 for i in args)==True and all(type(i)==int and i>0 for i in kwargs.values())==True:
+                return func(*args,**kwargs)
+            if any(isinstance(i,float) for i in args)==True:
+                raise TypeError
+            if any(i<=0 for i in args)==True or any(i<=0 for i in kwargs.values())==True:
+                raise ValueError
+    return wrapper
