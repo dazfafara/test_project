@@ -1,0 +1,13 @@
+import pandas as pd
+data = {'Name': ['John', 'Maggie', 'Mark', 'Jessica', 'Will'],
+        'Age': [23, 34, 45, 28, 31],
+        'Gender': ['M', 'F', 'M', 'F', 'M'],
+        'Country': ['USA', 'Canada', 'UK', 'Germany', 'France'],
+        'Salary_2021': [45000, 52000, 60000, 41000, 48000],
+        'Salary_2022': [47000, 55000, 61000, 42000, 50000]}
+df=pd.DataFrame(data)
+print(df[:3])
+df.drop(columns='Country',axis=1,inplace=True)
+df['total_salary']=df['Salary_2021']+df['Salary_2022']
+df.rename(columns={'Gender':'Sex'},inplace=True)
+print(df)
