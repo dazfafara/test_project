@@ -1,0 +1,12 @@
+import pandas as pd
+import re
+
+data = {'Название': ['Apple iPhone 12', 'Samsung Galaxy S21', 'Xiaomi Mi 11', 'Google Pixel 5'],
+        'Описание': ['Мощный смартфон от Apple', 'Премиальный андроид от Samsung', 'Смартфон с высокопроизводительной камерой', 'Новый флагман Google с лучшей камерой']}
+
+df = pd.DataFrame(data)
+df['Название']=df.apply(lambda x:x['Название'].lower(),axis=1)
+df['Описание']=df.apply(lambda x:re.sub(r'^Смартфон','Телефон',x['Описание']) if'Смартфон' in x['Описание']  else x['Описание'],axis=1)
+df['Описание']=df.apply(lambda x:re.sub(r'смартфон','телефон',x['Описание']) if'смартфон' in x['Описание']  else x['Описание'],axis=1)
+
+print(df)
