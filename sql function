@@ -1,0 +1,19 @@
+DELIMITER //
+CREATE FUNCTION REPEAT_AFTER_ME(delimiter text,n int)
+RETURNS TEXT
+DETERMINISTIC
+BEGIN
+    DECLARE result TEXT default '' ;                
+    DECLARE count INT DEFAULT 0;
+    DECLARE f text;
+    WHILE count< n DO  
+    set f= concat(count,' ',delimiter);
+    SET result := concat(result,' ',f);
+	SET count := count + 1;            
+    END WHILE;
+   
+    RETURN trim(concat(result,' ',n));
+END //
+DELIMITER ;
+
+SELECT REPEAT_AFTER_ME('beegeek', 5)
