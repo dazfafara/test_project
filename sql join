@@ -1,0 +1,67 @@
+DROP TABLE IF EXISTS Ads;
+DROP TABLE IF EXISTS Playback;
+
+-- Создание таблицы Playback
+CREATE TABLE Playback
+(
+    id         INT PRIMARY KEY AUTO_INCREMENT,
+    user_id    INT,
+    start_time INT,
+    end_time   INT
+);
+
+INSERT INTO Playback (user_id, start_time, end_time)
+VALUES (4, 179, 369),
+       (3, 52, 477),
+       (1, 5, 258),
+       (3, 490, 535),
+       (7, 197, 269),
+       (8, 104, 110),
+       (2, 158, 438),
+       (1, 345, 559),
+       (10, 152, 670),
+       (6, 132, 539),
+       (6, 580, 626),
+       (1, 580, 686),
+       (4, 380, 424),
+       (9, 29, 302),
+       (6, 700, 900),
+       (3, 570, 647),
+       (4, 500, 670),
+       (8, 121, 602),
+       (4, 680, 687),
+       (4, 719, 780);
+
+-- Создание таблицы Ads
+CREATE TABLE Ads
+(
+    id         INT PRIMARY KEY AUTO_INCREMENT,
+    user_id    INT,
+    time_stamp INT
+);
+
+TRUNCATE Ads;
+INSERT INTO Ads (user_id, time_stamp)
+VALUES (8, 121),
+       (1, 479),
+       (8, 1186),
+       (10, 1319),
+       (10, 807),
+       (9, 1427),
+       (7, 670),
+       (5, 396),
+       (6, 926),
+       (1, 241),
+       (8, 1188),
+       (9, 302),
+       (7, 522),
+       (3, 162),
+       (4, 753),
+       (8, 437),
+       (8, 1067),
+       (4, 1122),
+       (6, 804),
+       (10, 966);
+select Playback.id as session_id
+from Playback left join Ads on Playback.user_id=Ads.user_id and Ads.time_stamp between Playback.start_time and Playback.end_time
+where Ads.id is null
