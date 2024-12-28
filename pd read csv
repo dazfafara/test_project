@@ -1,0 +1,5 @@
+import pandas as pd
+df=pd.read_csv('sales.csv')
+print(df[(df['date']>='2020-07-07') &(df['date']<'2020-09-05')][:5])
+df.loc[df['item'] =='pen', 'price'] = 12
+print(df[-9:])
