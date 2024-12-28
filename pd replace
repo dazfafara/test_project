@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+import datetime as dt
+
+np.random.seed(32)
+start_date = dt.date(2022, 1, 1)
+end_date = dt.date(2022, 12, 31)
+date_range = pd.date_range(start_date, end_date)
+data = {'date': np.random.choice(date_range, 50),
+        'quantity': np.random.randint(1, 10, 50),
+        'sales': np.random.randint(100, 1000, 50)}
+df = pd.DataFrame(data)
+b=np.mean(df['sales'])
+df.loc[df['sales']<np.mean(df['sales']),'sales']=0
+df.loc[df['sales']>np.mean(df['sales']),'sales']=b
+print(df[:int(input())])
