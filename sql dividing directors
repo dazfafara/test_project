@@ -1,0 +1,7 @@
+set @k = (select count(*) div 3  from Directors);
+with  cte2 as (select NTILE(@k) OVER (ORDER BY id) AS group_number,full_name,rating from Directors)
+
+select group_number,sum(rating)/count(*) as avg_rating from cte2
+group by group_number
+order by group_number desc
+
