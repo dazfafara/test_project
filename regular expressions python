@@ -1,0 +1,17 @@
+import re
+def rec(fin):
+    result = re.sub(r'(\d+)\(\w+\)', func, fin)
+    if '(' not in result:
+        print(result)
+    else:
+        rec(result)
+
+def func(txt):
+    s = txt.group()
+    number=re.search(r'\d+',s)
+    word=re.search(r'[a-z]+',s)
+    return int(number.group())*word.group()
+
+
+
+rec(input())
