@@ -1,0 +1,60 @@
+DROP TABLE IF EXISTS Passengers;
+DROP TABLE IF EXISTS Buses;
+
+-- Создание таблицы Buses
+CREATE TABLE Buses
+(
+    id             INT PRIMARY KEY AUTO_INCREMENT,
+    departure_time INT
+);
+
+INSERT INTO Buses (departure_time)
+VALUES (2),
+       (4),
+       (7),
+       (9),
+       (11),
+       (13),
+       (15),
+       (17),
+       (19),
+       (21),
+       (1),
+       (3),
+       (5);
+-- Создание таблицы Passengers
+CREATE TABLE Passengers
+(
+    id           INT PRIMARY KEY,
+    arrival_time INT
+);
+
+INSERT INTO Passengers (id, arrival_time)
+VALUES (11, 1),
+       (12, 5),
+       (13, 6),
+       (14, 7),
+       (15, 2),
+       (16, 10),
+       (17, 14),
+       (18, 7),
+       (19, 9),
+       (20, 20),
+       (21, 3),
+       (22, 8),
+       (23, 11),
+       (24, 18),
+       (25, 4),
+       (26, 12),
+       (27, 19),
+       (28, 16),
+       (29, 6),
+       (30, 14);
+
+with Zapros as (select Buses.id as bus_id,count(Passengers.id) as passenger_count from Buses left join Passengers on Buses.departure_time>=Passengers.arrival_time
+and Buses.departure_time = (SELECT MIN(Buses.departure_time)
+                        FROM Buses 
+                        WHERE Buses.departure_time >= Passengers.arrival_time)
+group by bus_id)
+
+select * from Zapros
