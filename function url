@@ -1,0 +1,10 @@
+def sourcetemplate(url):
+    def func(**kwargs):
+        sp=sorted([f"{k}={v}" for k,v in kwargs.items()])
+        if len(sp)==1:
+            return f"{url}?{''.join(sp)}"
+        if len(sp) > 1:
+            return f"{url}?{'&'.join([i for i in sp])}"
+        if len(sp)==0:
+            return f"{url}"
+    return func
