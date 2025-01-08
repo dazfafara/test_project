@@ -1,11 +1,12 @@
-from datetime import date, time, datetime, timedelta
-fin={}
-for i in range(int(input())):
-       name=input().split()
-       fin[datetime.strptime(name[2],'%d.%m.%Y')]=fin.setdefault(datetime.strptime(name[2],'%d.%m.%Y'),[])+[name[0]+' '+name[1]]
-
-a=sorted(set({k: k for k,v in fin.items() if len(v)>1}))
-if len(a)>0:
+from datetime import  datetime
+def counting_dates(number,*data):
+    fin={}
+    for i in range(number):
+            j=data[i].split()
+            fin[datetime.strptime(j[2], '%d.%m.%Y')] = fin.setdefault(datetime.strptime(j[2], '%d.%m.%Y'), []) + [
+            j[0] + ' ' + j[1]]
+    a=sorted(set({k: k for k,v in fin.items() if len(v)>1}))
+    if len(a)>0:
        print(*[datetime.strftime(i,'%d.%m.%Y') for i in a],sep='\n')
-else:
+    else:
        print(*[datetime.strftime(i,'%d.%m.%Y') for i in sorted(fin.keys())],sep='\n')
