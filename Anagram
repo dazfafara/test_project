@@ -1,11 +1,12 @@
-r={}
-r1={}
-for i in input().lower().split():
+def anagram(txt1,txt2):
+    r={}
+    r1={}
+    for i in txt1.lower().split():
         i = i.strip('.,!?:;-').replace(' ', '')
         for j in i:
-                r[j]=r.get(j,0)+1
-for i in input().lower().split():
+            r[j]=r.get(j,0)+1
+    for i in txt2.lower().split():
         i = i.strip('.,!?:;-').replace(' ', '')
         for j in i:
                 r1[j] = r1.get(j, 0) + 1
-print('YES' if r==r1 else 'NO')
+    print( 'YES' if r==r1 else 'NO')
