@@ -1,0 +1,12 @@
+import pandas as pd
+import re
+def read(*args):
+    for _ in range(len(args)):
+        date = list(args)
+        for i in range(len(date)):
+            date[i] = re.sub(r' ', r',', date[i], count=1).split(',')
+    print(pd.DataFrame(date,columns=["Имя", "Фамилия", "Телефон", "Email"]))
+
+
+read('John Doe, +1 555-123-4567, john.doe@example.com','Jane Smith, +44 20 1234 5678, jane.smith@example.co.uk',
+'Alex Johnson, +61 2 1234 5678, aj@example.com')
